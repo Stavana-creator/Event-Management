@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventSphere Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="logo">
+            EventSphere
+        </div>
+
+        <a href="/admin_dashboard">📊 Dashboard</a>
+        <a href="/add_event">🎉 Add Event</a>
+        <a href="/manage_events">📅 Manage Events</a>
+        <a href="/event_report">📈 Reports</a>
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Topbar -->
+        <div class="topbar">
+
+            <h2>Admin Dashboard</h2>
+
+            <input
+                type="text"
+                placeholder="Search events..."
+                class="search-box">
+
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Events</h3>
+                <h1>{{ total_events }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <h1>{{ total_students }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Registrations</h3>
+               <h1>{{ total_registrations }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Upcoming Events</h3>
+                <h1>{{ upcoming_events }}</h1>
+            </div>
+
+        </div>
+
+        <!-- Category Table -->
+        <div class="table-container">
+
+            <h2>Event Categories</h2>
+
+            <table>
+
+                <tr>
+                    <th>Category</th>
+                    <th>Total Events</th>
+                </tr>
+
+                {% for row in category_data %}
+
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- Analytics Chart -->
+        <div class="graph-box">
+
+            <h2>Event Category Analytics</h2>
+
+            <canvas id="categoryChart"></canvas>
+
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="table-container">
+
+            <h2>Recent Activities</h2>
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Event</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>Tech Fest</td>
+                    <td>Active</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Hackathon</td>
+                    <td>Upcoming</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Cultural Night</td>
+                    <td>Completed</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const labels = [
+{% for row in category_data %}
+"{{ row[0] }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const values = [
+{% for row in category_data %}
+{{ row[1] }}{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const ctx = document.getElementById('categoryChart');
+
+new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: values
+        }]
+    }
+});
+
+</script>
+
+</body>
+</html>

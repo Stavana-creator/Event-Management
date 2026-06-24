@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Add Event</title>
+
+```
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+```
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+```
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        EventSphere
+    </div>
+
+    <a href="/admin_dashboard">📊 Dashboard</a>
+
+    <a href="/add_event">🎉 Add Event</a>
+
+    <a href="/manage_events">📅 Manage Events</a>
+
+    <a href="/event_report">📈 Reports</a>
+
+    <a href="/logout">🚪 Logout</a>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+    <div class="topbar">
+
+        <h2>Add New Event</h2>
+
+    </div>
+
+    <div class="form-card">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label>Event Name</label>
+
+            <input
+                type="text"
+                name="event_name"
+                placeholder="Enter event name"
+                required
+            >
+
+            <label>Event Date</label>
+
+            <input
+                type="date"
+                name="event_date"
+                required
+            >
+
+            <label>Venue</label>
+
+            <input
+                type="text"
+                name="venue"
+                placeholder="Enter venue"
+                required
+            >
+
+            <label>Description</label>
+
+            <textarea
+                name="description"
+                rows="5"
+                placeholder="Event description">
+            </textarea>
+            <label>Event Poster</label>
+
+<input
+    type="file"
+    name="poster"
+    accept="image/*">
+
+            <button
+                type="submit"
+                class="event-btn">
+
+                Create Event
+
+            </button>
+            <label>Category</label>
+<select name="category">
+    <option>Technical</option>
+    <option>Workshop</option>
+    <option>Hackathon</option>
+    <option>Sports</option>
+    <option>Cultural</option>
+    <option>Seminar</option>
+</select>
+
+<label>Status</label>
+<select name="status">
+    <option>Upcoming</option>
+    <option>Ongoing</option>
+    <option>Completed</option>
+</select>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Events</title>
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+
+<div class="dashboard">
+<div class="sidebar">
+
+
+    <div class="logo">EventSphere</div>
+
+    <a href="/admin_dashboard">📊 Dashboard</a>
+
+    <a href="/add_event">🎉 Add Event</a>
+
+    <a href="/manage_events">📅 Manage Events</a>
+
+    <a href="/event_report">📈 Reports</a>
+
+    <a href="/logout">🚪 Logout</a>
+
+</div>
+
+<div class="main-content">
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="success-box">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Manage Events</h2>
+
+    <div class="table-container">
+        <form method="GET">
+
+    <input type="text"
+           name="search"
+           placeholder="Search Event">
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+        <table>
+
+            <tr>
+    <th>ID</th>
+    <th>Event Name</th>
+    <th>Date</th>
+    <th>Venue</th>
+    <th>Category</th>
+    <th>Status</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</tr>
+
+            {% for event in events %}
+
+<tr>
+
+    <td>{{ event[0] }}</td>
+    <td>{{ event[1] }}</td>
+    <td>{{ event[2] }}</td>
+    <td>{{ event[3] }}</td>
+
+    <td>{{ event[5] }}</td>
+
+    <td>
+        {% if event[6] == "Upcoming" %}
+            <span class="status upcoming">Upcoming</span>
+
+        {% elif event[6] == "Ongoing" %}
+            <span class="status ongoing">Ongoing</span>
+
+        {% else %}
+            <span class="status completed">Completed</span>
+        {% endif %}
+    </td>
+
+    <td>
+        <a class="edit-btn"
+           href="/edit_event/{{ event[0] }}">
+           Edit
+        </a>
+    </td>
+
+    <td>
+        <a class="delete-btn"
+           href="/delete_event/{{ event[0] }}">
+           Delete
+        </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+            
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

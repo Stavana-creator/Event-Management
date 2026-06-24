@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Analytics Report</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="sidebar">
+
+        <div class="logo">
+            EventSphere
+        </div>
+
+        <a href="/admin_dashboard">📊 Dashboard</a>
+        <a href="/add_event">🎉 Add Event</a>
+        <a href="/manage_events">📅 Manage Events</a>
+        <a href="/event_report">📈 Reports</a>
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <h2>Event Analytics Report</h2>
+        </div>
+
+        <div class="cards">
+
+    <div class="card">
+        <h3>Total Events</h3>
+        <h1>{{ total_events }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Total Users</h3>
+        <h1>{{ total_students }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Registrations</h3>
+        <h1>{{ total_registrations }}</h1>
+    </div>
+
+    <div class="card">
+    <h3>Popular Event</h3>
+    <h1>
+        {{ popular_event[0] if popular_event else "N/A" }}
+    </h1>
+</div>
+        </div>
+    <div class="table-container">
+
+    <h2>Latest Events</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Venue</th>
+        </tr>
+
+        {% for event in events %}
+
+        <tr>
+            <td>{{ event[0] }}</td>
+            <td>{{ event[1] }}</td>
+            <td>{{ event[2] }}</td>
+            <td>{{ event[3] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+
+<div class="graph-box">
+    <h2>Registration Analytics</h2>
+    <div style="height:400px;">
+        <canvas id="reportChart"></canvas>
+    </div>
+</div>
+
+        
+
+        <div class="table-container">
+
+            <h2>Detailed Event Report</h2>
+
+            <table>
+
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Registrations</th>
+                </tr>
+
+                {% for row in report %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+
+                    <td>
+
+                        {% if row[3] >= 10 %}
+                            <span class="status success">
+                                {{ row[3] }}
+                            </span>
+
+                        {% elif row[3] >= 5 %}
+                            <span class="status warning">
+                                {{ row[3] }}
+                            </span>
+
+                        {% else %}
+                            <span class="status danger">
+                                {{ row[3] }}
+                            </span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const labels = [
+{% for row in report %}
+"{{ row[0] }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const registrations = [
+{% for row in report %}
+{{ row[3] }}{% if not loop.last %},{% endif %}
+{% endfor %}
+];
+
+const ctx = document.getElementById('reportChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Registrations',
+            data: registrations,
+            backgroundColor: '#4f46e5',
+            borderRadius: 10
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+
+</script>
+</body>
+</html>

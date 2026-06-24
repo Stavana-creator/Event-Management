@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            EventSphere
+        </div>
+
+        <a href="/student_dashboard">🏠 Dashboard</a>
+
+        <a href="/view_events">🎉 View Events</a>
+
+        <a href="/search_events">🔍 Search Events</a>
+
+        <a href="/my_events">📋 My Registrations</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <h2>Student Dashboard</h2>
+
+        </div>
+
+        <!-- Welcome Card -->
+
+        <div class="card" style="margin-bottom:25px;">
+
+            <h1>👋 Welcome to EventSphere</h1>
+
+            <p style="margin-top:10px;">
+                Explore college events, register instantly,
+                track your participation, and never miss
+                an opportunity.
+            </p>
+
+        </div>
+
+        <!-- Quick Stats -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>🎉 View Events</h3>
+
+                <p>
+                    Browse all available college events with details.
+                </p>
+
+                <br>
+
+                <a href="/view_events" class="event-btn">
+                    Explore Events
+                </a>
+
+            </div>
+
+            <div class="card">
+
+                <h3>🔍 Search Events</h3>
+
+                <p>
+                    Quickly find events by name or category.
+                </p>
+
+                <br>
+
+                <a href="/search_events" class="event-btn">
+                    Search Now
+                </a>
+
+            </div>
+
+            <div class="card">
+
+                <h3>📋 My Registrations</h3>
+
+                <p>
+                    View all events you have registered for.
+                </p>
+
+                <br>
+
+                <a href="/my_events" class="event-btn">
+                    View Registrations
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Information Section -->
+
+        <div class="table-container" style="margin-top:30px;">
+
+            <h2>Student Features</h2>
+
+            <table>
+
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+                </tr>
+
+                <tr>
+                    <td>View Events</td>
+                    <td>See all upcoming college events.</td>
+                </tr>
+
+                <tr>
+                    <td>Search Events</td>
+                    <td>Find events quickly using keywords.</td>
+                </tr>
+
+                <tr>
+                    <td>Register Events</td>
+                    <td>Join events with a single click.</td>
+                </tr>
+
+                <tr>
+                    <td>My Registrations</td>
+                    <td>Track events you have already joined.</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

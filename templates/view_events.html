@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Events</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="success-popup">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            EventSphere
+        </div>
+
+        <a href="/student_dashboard">🏠 Dashboard</a>
+
+        <a href="/view_events">🎉 View Events</a>
+
+        <a href="/search_events">🔍 Search Events</a>
+
+        <a href="/my_events">📋 My Registrations</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <h2>Available Events</h2>
+        </div>
+
+        <div class="events-grid">
+
+            {% for event in events %}
+
+            <div class="event-card">
+
+                <h3>{{ event[1] }}</h3>
+
+                <p>
+                    <b>Date:</b> {{ event[2] }}
+                </p>
+
+                <p>
+                    <b>Venue:</b> {{ event[3] }}
+                </p>
+
+                <p>
+                    <b>Description:</b> {{ event[4] }}
+                </p>
+
+                <a href="/register_event/{{ event[0] }}"
+                   class="event-btn">
+                   Register
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

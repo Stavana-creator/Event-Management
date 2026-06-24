@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EventElite</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="success-popup">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="hero">
+
+    <div class="hero-content">
+
+        <h1>EventElite</h1>
+
+        <p>
+            “Crafting experiences that last a lifetime.”
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="/register" class="btn">
+                Student Register
+            </a>
+
+            <a href="/login" class="btn">
+                Student Login
+            </a>
+
+            <a href="/admin" class="btn">
+                Admin Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

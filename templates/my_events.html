@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Registrations</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="sidebar">
+
+        <div class="logo">
+            EventSphere
+        </div>
+
+        <a href="/student_dashboard">🏠 Dashboard</a>
+
+        <a href="/view_events">🎉 View Events</a>
+
+        <a href="/search_events">🔍 Search Events</a>
+
+        <a href="/my_events">📋 My Registrations</a>
+
+        <a href="/logout">🚪 Logout</a>
+
+    </div>
+
+    <div class="main-content">
+
+        <div class="topbar">
+            <h2>My Registered Events</h2>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                </tr>
+
+                {% for event in events %}
+
+                <tr>
+                    <td>{{ event[0] }}</td>
+                    <td>{{ event[1] }}</td>
+                    <td>{{ event[2] }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
