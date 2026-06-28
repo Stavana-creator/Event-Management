@@ -1,8 +1,8 @@
-# College Event Management System
+#  Event Management System
 
 ## Project Overview
 
-College Event Management System is a web-based application developed using Flask and MySQL to manage college events efficiently.
+ Event Management System is a web-based application developed using Flask and MySQL to manage events efficiently.
 
 The system allows administrators to create and manage events while students can view, search, and register for events online.
 
